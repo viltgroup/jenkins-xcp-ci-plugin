@@ -1,0 +1,160 @@
+package com.vilt.xcp.jenkins;
+
+import hudson.model.AbstractProject;
+import hudson.tasks.BuildStepDescriptor;
+import hudson.tasks.Publisher;
+import hudson.util.FormValidation;
+
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.ServletException;
+
+import net.sf.json.JSONObject;
+
+import org.kohsuke.stapler.QueryParameter;
+import org.kohsuke.stapler.StaplerRequest;
+
+import com.vilt.xcp.jenkins.model.XcpEnvironmentInstance;
+import com.vilt.xcp.jenkins.utils.FormValidations;
+
+/**
+ * Descriptor for {@link XMSPublisher}. Used as a singleton.
+ * The class is marked as public so that it can be accessed from views.
+ *
+ * <p>
+ * See <tt>src/main/resources/com/vilt/xcp/jenkins/XMSPublisher/*.jelly</tt>
+ * for the actual HTML fragment for the configuration screen.
+ */
+public final class XMSPublisherDescriptor extends BuildStepDescriptor<Publisher> {
+
+	public XMSPublisherDescriptor() {
+		super(XMSPublisher.class);
+    }
+
+    public boolean isApplicable(Class<? extends AbstractProject> aClass) {
+        // Indicates that this builder can be used with all kind of project types 
+        return true;
+    }
+
+    /**
+     * This human readable name is used in the configuration screen.
+     */
+    public String getDisplayName() {
+        return "Publish xCP Application";
+    }
+
+    public List<XcpEnvironmentInstance> getXcpEnvironmentInstances() {
+    	return XCPEnvironmentsConfig.get().xcpEnvironmentInstances;
+    }
+
+	@Override
+	public Publisher newInstance(StaplerRequest req, JSONObject formData) {
+		XMSPublisher ret = req.bindJSON(XMSPublisher.class, formData);
+		return ret;
+	}
+
+	/**
+     * Performs on-the-fly validation of the form field 'xcpAppPackagePath'.
+     * 
+     * @param xcpAppPackagePath
+     *            This parameter receives the value that the user has typed.
+     * @return Indicates the outcome of the validation. This is sent to the
+     *         browser.
+     */
+    public FormValidation doCheckXcpAppPackagePath(@QueryParameter String xcpAppPackagePath) throws IOException, ServletException {
+        return FormValidations.validateFile(xcpAppPackagePath);
+    }
+
+	/**
+     * Performs on-the-fly validation of the form field 'xcpAppConfigPath'.
+     * 
+     * @param xcpAppConfigPath
+     *            This parameter receives the value that the user has typed.
+     * @return Indicates the outcome of the validation. This is sent to the
+     *         browser.
+     */
+    public FormValidation doCheckXcpAppConfigPath(@QueryParameter String xcpAppConfigPath) throws IOException, ServletException {
+        return FormValidations.validateFile(xcpAppConfigPath);
+    }
+    
+    /**
+     * Performs on-the-fly validation of the form field 'environment'.
+     * 
+     * @param environment
+     *            This parameter receives the value that the user has typed.
+     * @return Indicates the outcome of the validation. This is sent to the
+     *         browser.
+     */
+    public FormValidation doCheckEnvironment(@QueryParameter String environment) throws IOException, ServletException {
+        return FormValidations.validateRequired(environment);
+    }
+    
+    /**
+     * Performs on-the-fly validation of the form field 'xmsUsername'.
+     * 
+     * @param xmsUsername
+     *            This parameter receives the value that the user has typed.
+     * @return Indicates the outcome of the validation. This is sent to the
+     *         browser.
+     */
+    public FormValidation doCheckXmsUsername(@QueryParameter String xmsUsername) throws IOException, ServletException {
+        return FormValidations.validateRequired(xmsUsername);
+    }
+
+    /**
+     * Performs on-the-fly validation of the form field 'xmsPassword'.
+     * 
+     * @param xmsPassword
+     *            This parameter receives the value that the user has typed.
+     * @return Indicates the outcome of the validation. This is sent to the
+     *         browser.
+     */
+    public FormValidation doChecXxmsPassword(@QueryParameter String xmsPassword) throws IOException, ServletException {
+        return FormValidations.validateRequired(xmsPassword);
+    }
+
+    /**
+     * Performs on-the-fly validation of the form field 'xmsServerHost'.
+     * 
+     * @param xmsServerHost
+     *            This parameter receives the value that the user has typed.
+     * @return Indicates the outcome of the validation. This is sent to the
+     *         browser.
+     */
+    public FormValidation doCheckXmsServerHost(@QueryParameter String xmsServerHost) throws IOException, ServletException {
+        return FormValidations.validateRequired(xmsServerHost);
+    }
+
+    /**
+     * Performs on-the-fly validation of the form field 'xmsServerPort'.
+     * 
+     * @param xmsServerPort
+     *            This parameter receives the value that the user has typed.
+     * @return Indicates the outcome of the validation. This is sent to the
+     *         browser.
+     */
+    public FormValidation doCheckXmsServerPort(@QueryParameter String xmsServerPort) throws IOException, ServletException {
+    	try {
+    		int portNumber = Integer.parseInt(xmsServerPort);
+    		if (portNumber <= 0 || portNumber > 0xffff) {
+        		return FormValidation.warning("Port number is invalid.");    			
+    		}
+    	} catch(NumberFormatException ex) {
+    		return FormValidation.warning("Port number is invalid.");
+    	}
+        return FormValidation.ok();
+    }
+
+	/**
+     * Performs on-the-fly validation of the form field 'workPath'.
+     * 
+     * @param workPath
+     *            This parameter receives the value that the user has typed.
+     * @return Indicates the outcome of the validation. This is sent to the
+     *         browser.
+     */
+    public FormValidation doCheckWorkPath(@QueryParameter String workPath) throws IOException, ServletException {
+        return FormValidations.validateDirectory(workPath);
+    }
+}

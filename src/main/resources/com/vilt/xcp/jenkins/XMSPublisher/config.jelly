@@ -1,0 +1,91 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+	<!--
+	 This jelly script is used for per-project configuration.
+
+	 See global.jelly for a general discussion about jelly script.
+	-->
+
+	<f:entry name="xcpEnvId" title="${%xCP Environment}" field="xcpEnvId">
+		<j:choose>
+			<j:when test="${descriptor.xcpEnvironmentInstances.isEmpty()}">
+				<div class="warning">
+					No xCP Environments defined in <a href="${rootURL}/configure">global settings</a>.
+				</div>
+			</j:when>
+			<j:otherwise>
+				<select name="xcpEnvId" style="min-width: 180px;">
+					<j:forEach var="it" items="${descriptor.xcpEnvironmentInstances}">
+						<option value="${it.xcpEnvId}">${it.name}</option>
+				    </j:forEach>
+				</select>
+			</j:otherwise>
+		</j:choose>
+	</f:entry>
+
+	<f:entry title="${%WAR path}" field="xcpAppPackagePath">
+		<f:textbox />
+	</f:entry>
+
+	<f:entry title="${%Config path}" field="xcpAppConfigPath">
+		<f:textbox />
+	</f:entry>
+
+ 	<f:advanced>
+	 	<f:section title="${%Deploy Configuration}">
+			<f:entry title="Environment" field="environment">
+				<f:textbox />
+			</f:entry>
+		
+			<f:entry title="${%Deploy Method}" field="deployMethod">
+				<f:enum field="deployMethod">${it.toString()}</f:enum>
+			</f:entry>
+			<f:entry title="${%Data Policy}" field="dataPolicy">
+				<f:enum field="dataPolicy">${it.toString()}</f:enum>
+			</f:entry>
+			<f:entry title="${%Environment Type}" field="deployEnvType">
+				<f:enum field="deployEnvType">${it.toString()}</f:enum>
+			</f:entry>
+	
+			<f:entry title="${%Validate Only?}" field="validateOnly">
+				<f:checkbox />
+			</f:entry>
+			<f:entry title="${%xPlore Indexing?}" field="xploreIndexing">
+				<f:checkbox />
+			</f:entry>
+		</f:section>
+
+		<f:section title="${%Connection Configuration}">
+	 		<f:entry title="${%XMS Username}" field="xmsUsername">
+				<f:textbox />
+			</f:entry>
+			<f:entry title="${%XMS Password}" field="xmsPassword">
+				<f:password />
+			</f:entry>
+	 		<f:entry title="${%Host}" field="xmsServerHost">
+				<f:textbox />
+			</f:entry>
+	 		<f:entry title="${%Port}" field="xmsServerPort" default="8080">
+				<f:textbox />
+			</f:entry>
+			<f:entry title="${%Schema}" field="xmsServerSchema">
+			    <select name="xmsServerSchema">
+			        <option value="http">HTTP</option>
+			        <option value="https">HTTPS</option>
+			    </select>
+			</f:entry>
+	 		<f:entry title="${%Context Path}" field="xmsServerContextPath">
+				<f:textbox />
+			</f:entry>
+	 	</f:section>
+	 	
+		<f:section title="${%Run Configuration}">
+			<f:entry title="${%Run Path}" field="workPath">
+				<f:textbox />
+			</f:entry>
+			<f:entry title="${%Java VM Opts}" field="javaOpts">
+				<f:textbox />
+			</f:entry>
+		</f:section>
+	</f:advanced>
+</j:jelly>

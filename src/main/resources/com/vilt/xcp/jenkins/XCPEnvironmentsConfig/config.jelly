@@ -1,0 +1,43 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+  <!--
+    This Jelly script is used to produce the global configuration option.
+
+    Jenkins uses a set of tag libraries to provide uniformity in forms.
+    To determine where this tag is defined, first check the namespace URI,
+    and then look under $JENKINS/views/. For example, <f:section> is defined
+    in $JENKINS/views/lib/form/section.jelly.
+
+    It's also often useful to just check other similar scripts to see what
+    tags they use. Views are always organized according to its owner class,
+    so it should be straightforward to find them.
+  -->
+	<f:section title="${%Documentum xCP Plugin}">
+	 	<f:advanced align="left" title="${%xCP Environments...}">
+			<f:entry title="${%xCP Environments}" field="xcpEnvironmentInstances">
+				<f:repeatable var="xcpEnvironmentInstance" name="xcpEnvironmentInstances" items="${descriptor.xcpEnvironmentInstances}" add="${%Add xCP Environment}" header="${%xCP Environment}">
+					<table width="100%">
+						<f:entry title=""></f:entry>
+						<f:invisibleEntry>
+							<input type="hidden" name="xcpEnvId" value="${xcpEnvironmentInstance.xcpEnvId}" />
+						</f:invisibleEntry>
+						<f:entry title="${%Name}" field="name">
+							<f:textbox value="${xcpEnvironmentInstance.name}" />
+						</f:entry>
+						<f:entry title="${%xMS Tools Path}" field="xmsToolsPath">
+							<f:textbox value="${xcpEnvironmentInstance.xmsToolsPath}" />
+						</f:entry>
+						<f:entry title="${%xCP Designer Path}" field="xcpDesignerPath">
+							<f:textbox value="${xcpEnvironmentInstance.xcpDesignerPath}" />
+						</f:entry>
+						<f:entry title="">
+							<div align="right">
+								<f:repeatableDeleteButton value="${%Delete}"/>
+							</div>
+						</f:entry>
+					</table>
+				</f:repeatable>
+			</f:entry>
+		</f:advanced>
+	</f:section>
+</j:jelly>
