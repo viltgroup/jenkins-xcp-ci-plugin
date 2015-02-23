@@ -1,9 +1,9 @@
 <?jelly escape-by-default='true'?>
 <j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
-	<f:entry name="xcpEnvId" title="${%Default}" field="xcpEnvId">
+	<f:entry name="xcpEnvId" title="${%xCP Environment}" field="xcpEnvId">
 		<j:choose>
 			<j:when test="${descriptor.xcpEnvironmentInstances.isEmpty()}">
-				<div class="warning">
+				<div class="error">
 					No xCP Environments in <a href="${rootURL}/configure">global settings</a>.
 				</div>
 			</j:when>
@@ -18,5 +18,8 @@
 	</f:entry>
 	<f:entry name="buildPath" title="${%Build Path}" field="buildPath">
 		<f:textbox value="${instance.buildPath}" />
+	</f:entry>
+		<f:entry title="${%Use private maven repository}" field="usePrivateRepository">
+	<f:checkbox />
 	</f:entry>
 </j:jelly>

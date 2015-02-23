@@ -1,29 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <?jelly escape-by-default='true'?>
 <j:jelly xmlns:j="jelly:core">
-<![CDATA[
-<?xml version="1.0" encoding="UTF-8"?>
 <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" 
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
           xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+	<j:if test="${!localRepositoryPath.isEmpty()}">
+		<localRepository>${localRepositoryPath}</localRepository>
+	</j:if>
 
 	<profiles>
 		<profile>
 			<id>xcp-designer</id> 
 			<properties> 
 				<designerPath>${xcpDesignerPath}</designerPath>
-				<workspace>$${env.WORKSPACE}/__workspace</workspace>
+				<workspace>${workspacePath}</workspace>
 			</properties>
 			<repositories>
 				<repository>
 					<id>Builder-offline</id>
-					<url>file:///${xcpDesignerPath}/maven</url>
+					<url>file://${xcpDesignerMavenPath}</url>
 				</repository>
 			</repositories>
 
 			<pluginRepositories>
 				<pluginRepository>
 					<id>Builder-offline</id>
-					<url>file:///${xcpDesignerPath}/maven</url>
+					<url>file://${xcpDesignerMavenPath}</url>
 				</pluginRepository>
 			</pluginRepositories>
 		</profile>
@@ -34,10 +37,9 @@
 	<mirrors>
 		<mirror> 
 			<id>Builder-offline</id> 
-			<url>file:///${xcpDesignerPath}/maven</url> 
+			<url>file://${xcpDesignerMavenPath}</url> 
 			<mirrorOf>Builder</mirrorOf> 
 		</mirror> 
 	</mirrors>
 </settings>
-]]>
 </j:jelly>

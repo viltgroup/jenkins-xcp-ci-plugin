@@ -64,7 +64,7 @@ public final class XCPBuildWrapperDescriptor extends BuildWrapperDescriptor  {
      *         browser.
      */
     public FormValidation doCheckBuildPath(@QueryParameter String buildPath) throws IOException, ServletException {
-    	return FormValidations.validateDirectory(buildPath);
+    	return FormValidations.validateDirectory(buildPath, true);
     }
 	
 }

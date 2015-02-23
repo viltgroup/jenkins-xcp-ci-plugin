@@ -155,6 +155,6 @@ public final class XMSPublisherDescriptor extends BuildStepDescriptor<Publisher>
      *         browser.
      */
     public FormValidation doCheckWorkPath(@QueryParameter String workPath) throws IOException, ServletException {
-        return FormValidations.validateDirectory(workPath);
+        return FormValidations.validateDirectory(workPath, true);
     }
 }

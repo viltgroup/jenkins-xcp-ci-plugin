@@ -14,12 +14,22 @@ public class FormValidations {
     }
 
     public static FormValidation validateDirectory(String path) {
+    	return validateDirectory(path, false);
+    }
+    
+    public static FormValidation validateDirectory(String path, boolean ignoreRelativePathExistance) {
         if(path == null || path.isEmpty()) {
-            return FormValidation.warning("Path cannot be empty.");
+            return FormValidation.error("Path cannot be empty.");
         }
         File dir = new File(path);
-        if(!dir.exists() || !dir.isDirectory()) {
-            return FormValidation.warning("Path is invalid.");
+        if(!dir.exists()) {
+        	if (ignoreRelativePathExistance && !dir.isAbsolute()) {
+        		return FormValidation.ok();
+        	}
+	        return FormValidation.error("Path does not exist.");
+        }
+        if(!dir.isDirectory()) {
+            return FormValidation.error("Path is not a directory.");
         }
         return FormValidation.ok();    	
     }
