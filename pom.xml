@@ -17,7 +17,7 @@
 
 	<properties>
       <!-- This should point to the release repository. -->
-      <jenkins.repo.path>file:///${project.basedir}/../jenkins-plugin-center.wiki/releases</jenkins.repo.path>
+      <jenkins.repo.path>file:///${project.basedir}/../jenkins-plugin-center.wiki</jenkins.repo.path>
     </properties>
 	
 	<name>Documentum xCP Plugin</name>
