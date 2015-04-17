@@ -35,7 +35,7 @@ public class XMSExecutionWrapper {
 			// prepare script to run
 			String runScriptPath = prepareRunScript(xmsWorkPath, publishConfig);
 			
-			String javaExecPath = String.format("%s%sbin%sjava.exe",javaHome,File.separator,File.separator);
+			String javaExecPath = String.format("%s%sbin%sjava",javaHome,File.separator,File.separator);
 	
 			List<String> commandAndArguments = new ArrayList<String>();
 			commandAndArguments.add(javaExecPath);
