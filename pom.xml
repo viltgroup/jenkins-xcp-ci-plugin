@@ -12,20 +12,16 @@
 	</parent>
 	<groupId>com.vilt.xcp.jenkins</groupId>
 	<artifactId>documentum-xcp-plugin</artifactId>
-	<version>0.2</version>
+	<version>0.3</version>
 	<packaging>hpi</packaging>
 
 	<properties>
-      <!-- This should point to the release repository. Currently it expects to be a project -->
-      <jenkins.repo.path>file:///${project.basedir}/../jenkins-plugin-center.wiki</jenkins.repo.path>
+      <!-- This should point to the release repository. -->
+      <jenkins.repo.path>file:///${project.basedir}/../jenkins-plugin-center.wiki/releases</jenkins.repo.path>
     </properties>
 	
 	<name>Documentum xCP Plugin</name>
 	<description>Allows the generation and deployment of Documentum xCP applications.</description>
-	<properties>
-		<!--maven variable which points to my Jenkins repository -->
-		<jenkins.repo.path>file://${project.basedir}/../jenkins-plugin-center/releases</jenkins.repo.path>
-	</properties>
 	<url>https://artemis.vilt-group.com/joao.ribeiro/documentum-xcp-plugin/wikis/home</url>
 	<licenses>
 		<license>
@@ -101,17 +97,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
-	<distributionManagement>
-		<repository>
-			<id>jenkins.repo.release</id>
-			<name>Repository for Releases</name>
-			<url>${jenkins.repo.path}/stables</url>
-		</repository>
-		<snapshotRepository>
-			<id>jenkins.repo.snapshot</id>
-			<name>Repository for Snapshots</name>
-			<url>${jenkins.repo.path}/experimental</url>
-		</snapshotRepository>
-	</distributionManagement>
 </project>
