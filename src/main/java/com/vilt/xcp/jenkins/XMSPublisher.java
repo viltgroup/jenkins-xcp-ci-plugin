@@ -45,7 +45,7 @@ public class XMSPublisher extends Publisher implements IXMSPublishConfig {
 	public static final XMSPublisherDescriptor DESCRIPTOR = new XMSPublisherDescriptor();
 	
 	// Configs
-	private final String xcpEnvironmentInstanceId;
+	private final String xcpEnvId;
 	private final String xcpAppPackagePath;
 	private final String xcpAppConfigPath;
 
@@ -68,13 +68,14 @@ public class XMSPublisher extends Publisher implements IXMSPublishConfig {
 	private final String javaOpts;
 
     // Fields in config.jelly must match the parameter names in the "DataBoundConstructor"
-	@DataBoundConstructor public XMSPublisher(String xcpAppPackagePath, String xcpAppConfigPath,
+	@DataBoundConstructor public XMSPublisher(String xcpEnvId, String xcpAppPackagePath, String xcpAppConfigPath,
 			String environment, DataPolicy dataPolicy,
 			DeployMethod deployMethod, DeployEnvType deployEnvType,
 			boolean xploreIndexing, boolean validateOnly, String xmsUsername,
 			Secret xmsPassword, String xmsServerHost, String xmsServerPort,
-			String xmsServerSchema, String xmsServerContextPath, String xcpEnvironmentInstanceId,
+			String xmsServerSchema, String xmsServerContextPath,
 			String workPath, String javaOpts) {
+		this.xcpEnvId = xcpEnvId;
 		this.xcpAppPackagePath = xcpAppPackagePath;
 		this.xcpAppConfigPath = xcpAppConfigPath;
 		this.environment = environment;
@@ -89,7 +90,6 @@ public class XMSPublisher extends Publisher implements IXMSPublishConfig {
 		this.xmsServerPort = xmsServerPort;
 		this.xmsServerSchema = xmsServerSchema;
 		this.xmsServerContextPath = xmsServerContextPath;
-		this.xcpEnvironmentInstanceId = xcpEnvironmentInstanceId;
 		this.workPath = workPath;
 		this.javaOpts = javaOpts;
 	}
@@ -144,14 +144,14 @@ public class XMSPublisher extends Publisher implements IXMSPublishConfig {
 	public String getXmsToolsPath() {
 		String xmsToolsPath = "";
         for(XcpEnvironmentInstance xcpEnvironmentInstance : DESCRIPTOR.getXcpEnvironmentInstances()) {
-            if(xcpEnvironmentInstanceId.equals(xcpEnvironmentInstance.xcpEnvId)) {
+            if(xcpEnvId.equals(xcpEnvironmentInstance.xcpEnvId)) {
             	xmsToolsPath = xcpEnvironmentInstance.xmsToolsPath;
             }
         }
 		return xmsToolsPath;
 	}
-	public String getXmsToolsInstanceId() {
-		return xcpEnvironmentInstanceId;
+	public String getXcpEnvId() {
+		return xcpEnvId;
 	}
 	public String getWorkPath() {
 		return workPath;

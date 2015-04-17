@@ -9,14 +9,14 @@
 	<f:entry name="xcpEnvId" title="${%xCP Environment}" field="xcpEnvId">
 		<j:choose>
 			<j:when test="${descriptor.xcpEnvironmentInstances.isEmpty()}">
-				<div class="warning">
-					No xCP Environments defined in <a href="${rootURL}/configure">global settings</a>.
+				<div class="error">
+					No xCP Environments in <a href="${rootURL}/configure">global settings</a>.
 				</div>
 			</j:when>
 			<j:otherwise>
-				<select name="xcpEnvId" style="min-width: 180px;">
+				<select name="xcpEnvId" style="min-width: 220px;">
 					<j:forEach var="it" items="${descriptor.xcpEnvironmentInstances}">
-						<option value="${it.xcpEnvId}">${it.name}</option>
+						<option value="${it.xcpEnvId}" selected="${instance.xcpEnvId==it.xcpEnvId?'true':null}">${it.name}</option>
 				    </j:forEach>
 				</select>
 			</j:otherwise>
