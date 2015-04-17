@@ -62,20 +62,6 @@ public class XCPBuildWrapper extends BuildWrapper {
 
 		// clear previous xCP Build
 		clearPreviousXCPBuild(xcpWorkspacePath, listener.getLogger());
-		
-//		FilePath xcpDesignerRunPath = null;
-//		try {
-//			xcpDesignerRunPath = buildFilePath.child("xCPDesigner");
-//			xcpDesignerRunPath.mkdirs();
-//			if (xcpDesignerRunPath.exists()) {
-//				xcpDesignerRunPath.deleteContents();
-//			}
-//			prepareXCPDesignerDirectory(Paths.get(xcpEnv.xcpDesignerPath), Paths.get(xcpDesignerRunPath.getRemote()));
-//		} catch (IOException ex) {
-//			throw new RuntimeException("Error preparing xCP Designer execution directory", ex);
-//		} catch (InterruptedException ex) {
-//			throw new RuntimeException("Error preparing xCP Designer execution directory", ex);
-//		}
 
 		setupMavenSettings(userHomePath, xcpWorkspacePath, xcpEnv.xcpDesignerPath, usePrivateRepository);
 
