@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>com.vilt.xcp.jenkins</groupId>
 	<artifactId>documentum-xcp-plugin</artifactId>
-	<version>0.3.4</version>
+	<version>0.3.5-SNAPSHOT</version>
 	<packaging>hpi</packaging>
 
 	<properties>
@@ -41,7 +41,7 @@
 		<connection>scm:git:git://artemis.vilt-group.com:joao.ribeiro/documentum-xcp-plugin.git</connection>
 		<developerConnection>scm:git:git@artemis.vilt-group.com:joao.ribeiro/documentum-xcp-plugin.git</developerConnection>
 		<url>https://artemis.vilt-group.com/joao.ribeiro/documentum-xcp-plugin</url>
-		<tag>documentum-xcp-plugin-0.3.4</tag>
+		<tag>HEAD</tag>
 	</scm>
 	<distributionManagement>
 		<repository>
