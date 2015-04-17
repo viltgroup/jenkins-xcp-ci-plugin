@@ -1,6 +1,6 @@
 # Documentum xCP Plugin
 
- Allows for the configuration of build and/or deployment of Documentum xCP Applications in [jenkins](http://jenkins-ci.org/)
+ This plugin allows configuring build and/or deployment of Documentum xCP Applications in [jenkins](http://jenkins-ci.org/).
 
 ## Supported versions
 
@@ -27,9 +27,13 @@
 
  - Generate test scripts.
 
-License
-----
+## License
 
 TBD
+
+## More Info
+
+Check the [wiki](../../wikis/home) for more details on how to use the plugin.
+
 
 [plugin_tutorial_envsetup]:https://wiki.jenkins-ci.org/display/JENKINS/Plugin+tutorial#Plugintutorial-SettingUpEnvironment
