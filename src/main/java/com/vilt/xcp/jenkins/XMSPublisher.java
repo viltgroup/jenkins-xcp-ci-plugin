@@ -1,6 +1,7 @@
 package com.vilt.xcp.jenkins;
 
 import hudson.Extension;
+import hudson.FilePath;
 import hudson.Launcher;
 import hudson.model.BuildListener;
 import hudson.model.AbstractBuild;
@@ -164,7 +165,12 @@ public class XMSPublisher extends Publisher implements IXMSPublishConfig {
     public boolean perform(AbstractBuild build, Launcher launcher, BuildListener listener) {
         // This is where you 'build' the project.
 		XMSExecutionWrapper xmsExecution = new XMSExecutionWrapper();
-		return xmsExecution.run(this, listener.getLogger());
+		
+		// Construct xmsWorkPath based on current workspace.
+		FilePath workspacePath = build.getWorkspace();
+		FilePath xmsWorkPath = workspacePath.child(this.getWorkPath());
+		
+		return xmsExecution.run(xmsWorkPath.getRemote(), this, listener.getLogger());
     }
 
     // Overridden for better type safety.

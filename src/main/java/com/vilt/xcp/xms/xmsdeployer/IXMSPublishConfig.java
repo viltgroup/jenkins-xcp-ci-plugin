@@ -26,6 +26,5 @@ public interface IXMSPublishConfig {
 	public String getXmsServerContextPath();
 	
 	public String getXmsToolsPath();
-	public String getWorkPath();
 	public String getJavaOpts();
 }

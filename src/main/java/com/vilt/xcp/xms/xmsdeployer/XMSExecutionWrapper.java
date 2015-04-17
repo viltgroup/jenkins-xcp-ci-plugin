@@ -21,12 +21,19 @@ import java.util.Properties;
 
 public class XMSExecutionWrapper {
 
-	public boolean run(IXMSPublishConfig publishConfig, PrintStream consoleOutput) {
+	/**
+	 * Calls XMS Tools to execute a deploy
+	 * 
+	 * @param xmsWorkPath - Path to execution directory (should start empty).
+	 * @param publishConfig
+	 * @param consoleOutput
+	 * @return
+	 */
+	public boolean run(String xmsWorkPath, IXMSPublishConfig publishConfig, PrintStream consoleOutput) {
 		String javaHome = System.getProperty("java.home");
 
 		try {
 			// prepare xms work directory
-			String xmsWorkPath = publishConfig.getWorkPath();
 			prepareXMSDirectory(Paths.get(publishConfig.getXmsToolsPath()), Paths.get(xmsWorkPath));
 			
 			// prepare xms-server.properties
