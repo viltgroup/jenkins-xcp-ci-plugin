@@ -15,10 +15,10 @@
 	<packaging>hpi</packaging>
 
 	<properties>
-      <!-- This should point to the release repository. -->
-      <jenkins.repo.path>file:///${project.basedir}/../jenkins-plugin-center.wiki</jenkins.repo.path>
-    </properties>
-	
+		<!-- This should point to the release repository. -->
+		<jenkins.repo.path>file:///${project.basedir}/../jenkins-plugin-center.wiki</jenkins.repo.path>
+	</properties>
+
 	<name>Documentum xCP Plugin</name>
 	<description>Allows the generation and deployment of Documentum xCP applications.</description>
 	<url>https://artemis.vilt-group.com/joao.ribeiro/documentum-xcp-plugin/wikis/home</url>
@@ -41,8 +41,20 @@
 		<connection>scm:git:git://artemis.vilt-group.com:joao.ribeiro/documentum-xcp-plugin.git</connection>
 		<developerConnection>scm:git:git@artemis.vilt-group.com:joao.ribeiro/documentum-xcp-plugin.git</developerConnection>
 		<url>https://artemis.vilt-group.com/joao.ribeiro/documentum-xcp-plugin</url>
-	  <tag>HEAD</tag>
-  </scm>
+		<tag>HEAD</tag>
+	</scm>
+	<distributionManagement>
+		<repository>
+			<id>jenkins.repo.release</id>
+			<name>Repository for Releases</name>
+			<url>${jenkins.repo.path}/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>jenkins.repo.snapshot</id>
+			<name>Repository for Snapshots</name>
+			<url>${jenkins.repo.path}/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
 
 	<repositories>
 		<repository>
@@ -56,19 +68,6 @@
 			<url>http://repo.jenkins-ci.org/public/</url>
 		</pluginRepository>
 	</pluginRepositories>
-
-	<distributionManagement>
-		<repository>
-			<id>jenkins.repo.release</id>
-			<name>Repository for Releases</name>
-			<url>${jenkins.repo.path}/releases</url>
-		</repository>
-		<snapshotRepository>
-			<id>jenkins.repo.snapshot</id>
-			<name>Repository for Snapshots</name>
-			<url>${jenkins.repo.path}/snapshots</url>
-		</snapshotRepository>
-	</distributionManagement>
 
 	<dependencies>
 		<dependency>
