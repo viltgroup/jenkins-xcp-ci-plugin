@@ -1,4 +1,4 @@
-package com.vilt.xcp.jenkins;
+package com.viltgroup.xcp.jenkins;
 
 import java.io.IOException;
 import java.util.List;
@@ -16,15 +16,15 @@ import net.sf.json.JSONObject;
 import org.kohsuke.stapler.QueryParameter;
 import org.kohsuke.stapler.StaplerRequest;
 
-import com.vilt.xcp.jenkins.model.XcpEnvironmentInstance;
-import com.vilt.xcp.jenkins.utils.FormValidations;
+import com.viltgroup.xcp.jenkins.model.XcpEnvironmentInstance;
+import com.viltgroup.xcp.jenkins.utils.FormValidations;
 
 /**
  * Descriptor for {@link XCPBuildWrapper}. Used as a singleton.
  * The class is marked as public so that it can be accessed from views.
  *
  * <p>
- * See <tt>src/main/resources/com/vilt/xcp/jenkins/XCPBuildWrapper/*.jelly</tt>
+ * See <tt>src/main/resources/com/viltgroup/xcp/jenkins/XCPBuildWrapper/*.jelly</tt>
  * for the actual HTML fragment for the configuration screen.
  */
 public final class XCPBuildWrapperDescriptor extends BuildWrapperDescriptor  {

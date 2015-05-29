@@ -1,4 +1,4 @@
-package com.vilt.xcp.jenkins;
+package com.viltgroup.xcp.jenkins;
 
 import hudson.Extension;
 import hudson.FilePath;
@@ -23,9 +23,9 @@ import java.util.Map;
 
 import org.kohsuke.stapler.DataBoundConstructor;
 
-import com.vilt.xcp.jenkins.maven.M2EPreferences;
-import com.vilt.xcp.jenkins.maven.XcpMavenSettings;
-import com.vilt.xcp.jenkins.model.XcpEnvironmentInstance;
+import com.viltgroup.xcp.jenkins.maven.M2EPreferences;
+import com.viltgroup.xcp.jenkins.maven.XcpMavenSettings;
+import com.viltgroup.xcp.jenkins.model.XcpEnvironmentInstance;
 
 /**
  * Custom build wrapper that injects maven settings.xml, required for building a xCP project, into built-in jenkins Maven action.

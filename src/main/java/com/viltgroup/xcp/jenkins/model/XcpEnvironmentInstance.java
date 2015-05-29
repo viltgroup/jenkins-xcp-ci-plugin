@@ -1,4 +1,4 @@
-package com.vilt.xcp.jenkins.model;
+package com.viltgroup.xcp.jenkins.model;
 
 import hudson.Extension;
 import hudson.model.AbstractDescribableImpl;

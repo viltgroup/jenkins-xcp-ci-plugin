@@ -1,4 +1,4 @@
-package com.vilt.xcp.jenkins.maven;
+package com.viltgroup.xcp.jenkins.maven;
 
 import hudson.FilePath;
 
@@ -12,13 +12,13 @@ import org.apache.commons.jelly.JellyTagException;
 import org.apache.commons.jelly.Script;
 import org.apache.commons.jelly.XMLOutput;
 
-import com.vilt.xcp.jenkins.utils.OSPathHacks;
+import com.viltgroup.xcp.jenkins.utils.OSPathHacks;
 
 /**
  * Utility class that handles the generation of maven settings.xml for a given xCP Designer project. 
  *
  * <p>
- * See <tt>src/main/resources/com/vilt/xcp/jenkins/maven/XcpMavenSettings/template.jelly</tt>
+ * See <tt>src/main/resources/com/viltgroup/xcp/jenkins/maven/XcpMavenSettings/template.jelly</tt>
  * for the actual template
  */
 public class XcpMavenSettings {

@@ -1,10 +1,10 @@
-package com.vilt.xcp.jenkins.maven;
+package com.viltgroup.xcp.jenkins.maven;
 
 import hudson.FilePath;
 
 import java.io.IOException;
 
-import com.vilt.xcp.jenkins.utils.OSPathHacks;
+import com.viltgroup.xcp.jenkins.utils.OSPathHacks;
 
 /**
  * Utility class that handles the generation of m2e preferences file for a given xCP Designer project. 

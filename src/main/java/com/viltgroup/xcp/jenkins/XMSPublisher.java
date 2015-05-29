@@ -1,4 +1,4 @@
-package com.vilt.xcp.jenkins;
+package com.viltgroup.xcp.jenkins;
 
 import hudson.Extension;
 import hudson.FilePath;
@@ -13,12 +13,12 @@ import hudson.util.Secret;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.StaplerRequest;
 
-import com.vilt.xcp.jenkins.model.DataPolicy;
-import com.vilt.xcp.jenkins.model.DeployEnvType;
-import com.vilt.xcp.jenkins.model.DeployMethod;
-import com.vilt.xcp.jenkins.model.XcpEnvironmentInstance;
-import com.vilt.xcp.xms.xmsdeployer.IXMSPublishConfig;
-import com.vilt.xcp.xms.xmsdeployer.XMSExecutionWrapper;
+import com.viltgroup.xcp.jenkins.model.DataPolicy;
+import com.viltgroup.xcp.jenkins.model.DeployEnvType;
+import com.viltgroup.xcp.jenkins.model.DeployMethod;
+import com.viltgroup.xcp.jenkins.model.XcpEnvironmentInstance;
+import com.viltgroup.xcp.xms.xmsdeployer.IXMSPublishConfig;
+import com.viltgroup.xcp.xms.xmsdeployer.XMSExecutionWrapper;
 
 /**
  * Sample {@link Builder}.

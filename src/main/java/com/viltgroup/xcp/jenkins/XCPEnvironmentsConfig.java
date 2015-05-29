@@ -1,4 +1,4 @@
-package com.vilt.xcp.jenkins;
+package com.viltgroup.xcp.jenkins;
 
 import hudson.Extension;
 import hudson.util.FormValidation;
@@ -15,14 +15,14 @@ import net.sf.json.JSONObject;
 import org.kohsuke.stapler.QueryParameter;
 import org.kohsuke.stapler.StaplerRequest;
 
-import com.vilt.xcp.jenkins.model.XcpEnvironmentInstance;
-import com.vilt.xcp.jenkins.utils.FormValidations;
+import com.viltgroup.xcp.jenkins.model.XcpEnvironmentInstance;
+import com.viltgroup.xcp.jenkins.utils.FormValidations;
 
 /**
  * Global configurations for the Documentum xCP Plugin
  *
  * <p>
- * See <tt>src/main/resources/com/vilt/xcp/plugins/XCPEnvironmentsConfig/*.jelly</tt>
+ * See <tt>src/main/resources/com/viltgroup/xcp/plugins/XCPEnvironmentsConfig/*.jelly</tt>
  * for the actual HTML fragment for the configuration screen.
  */
 @Extension

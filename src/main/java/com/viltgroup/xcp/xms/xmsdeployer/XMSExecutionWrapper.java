@@ -1,4 +1,4 @@
-package com.vilt.xcp.xms.xmsdeployer;
+package com.viltgroup.xcp.xms.xmsdeployer;
 
 import java.io.BufferedReader;
 import java.io.File;

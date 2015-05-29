@@ -1,8 +1,8 @@
-package com.vilt.xcp.xms.xmsdeployer;
+package com.viltgroup.xcp.xms.xmsdeployer;
 
-import com.vilt.xcp.jenkins.model.DataPolicy;
-import com.vilt.xcp.jenkins.model.DeployEnvType;
-import com.vilt.xcp.jenkins.model.DeployMethod;
+import com.viltgroup.xcp.jenkins.model.DataPolicy;
+import com.viltgroup.xcp.jenkins.model.DeployEnvType;
+import com.viltgroup.xcp.jenkins.model.DeployMethod;
 
 public interface IXMSPublishConfig {
 

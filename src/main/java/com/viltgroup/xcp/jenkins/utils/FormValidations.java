@@ -1,4 +1,4 @@
-package com.vilt.xcp.jenkins.utils;
+package com.viltgroup.xcp.jenkins.utils;
 
 import hudson.util.FormValidation;
 
