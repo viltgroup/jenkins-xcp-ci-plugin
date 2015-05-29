@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
 		<groupId>org.jenkins-ci.plugins</groupId>
 		<artifactId>plugin</artifactId>
-		<!-- Baseline Jenkins version you use to build and test the plugin. Users must have this version or newer to run. -->
 		<version>1.609</version>
-		<relativePath />
 	</parent>
-	<groupId>com.vilt.xcp.jenkins</groupId>
-	<artifactId>documentum-xcp-plugin</artifactId>
-	<version>0.3.9-SNAPSHOT</version>
+
+	<groupId>com.viltgroup.xcp.jenkins</groupId>
+	<artifactId>documentum-xcp</artifactId>
+	<version>0.4.0-SNAPSHOT</version>
 	<packaging>hpi</packaging>
 
 	<properties>
@@ -19,13 +19,14 @@
 		<jenkins.repo.path>file:///${env.UPDATE_CENTER_PATH}/jenkins-plugin-center.wiki</jenkins.repo.path>
 	</properties>
 
-	<name>Documentum xCP Plugin</name>
-	<description>Allows the generation and deployment of Documentum xCP applications.</description>
+	<name>Jenkins Documentum xCP Plugin</name>
+	<description>Eases the generation and deployment of Documentum xCP applications.</description>
 	<url>https://artemis.vilt-group.com/joao.ribeiro/documentum-xcp-plugin/wikis/home</url>
 	<licenses>
 		<license>
-			<name>TBD License</name>
-			<url>http://tbd</url>
+			<name>Apache 2.0</name>
+			<comments>All source code is under the Apache 2.0 license.</comments>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
 		</license>
 	</licenses>
 
@@ -34,8 +35,16 @@
 			<id>joao.ribeiro</id>
 			<name>João Ribeiro</name>
 			<email>joao.ribeiro@vilt-group.com</email>
+			<organization>VILT Group</organization>
+			<organizationUrl>http://www.vilt-group.com</organizationUrl>
+			<timezone>Europe/Lisbon</timezone>
 		</developer>
 	</developers>
+
+	<organization>
+		<name>VILT Group</name>
+		<url>http://www.vilt-group.com</url>
+	</organization>
 
 	<scm>
 		<connection>scm:git:git://artemis.vilt-group.com:joao.ribeiro/documentum-xcp-plugin.git</connection>
@@ -43,18 +52,19 @@
 		<url>https://artemis.vilt-group.com/joao.ribeiro/documentum-xcp-plugin</url>
 		<tag>HEAD</tag>
 	</scm>
-	<distributionManagement>
+
+	<repositories>
 		<repository>
-			<id>jenkins.repo.release</id>
-			<name>Repository for Releases</name>
-			<url>${jenkins.repo.path}/releases</url>
+			<id>repo.jenkins-ci.org</id>
+			<url>http://repo.jenkins-ci.org/public/</url>
 		</repository>
-		<snapshotRepository>
-			<id>jenkins.repo.snapshot</id>
-			<name>Repository for Snapshots</name>
-			<url>${jenkins.repo.path}/snapshots</url>
-		</snapshotRepository>
-	</distributionManagement>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>repo.jenkins-ci.org</id>
+			<url>http://repo.jenkins-ci.org/public/</url>
+		</pluginRepository>
+	</pluginRepositories>
 
 	<dependencies>
 		<dependency>
