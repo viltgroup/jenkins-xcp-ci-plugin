@@ -4,7 +4,7 @@
 
 ## Supported versions
 
- This plugin was only tested with xCP 2.1 . However, it should also work with early versions.
+ This plugin was only tested with xCP 2.1 . However, it should also work with new versions.
  
 ## Quick Installation
 
