@@ -21,7 +21,7 @@
 	<parent>
 		<groupId>org.jenkins-ci.plugins</groupId>
 		<artifactId>plugin</artifactId>
-		<version>1.609</version>
+		<version>1.617</version>
 	</parent>
 
 	<groupId>com.viltgroup.xcp.jenkins</groupId>
@@ -31,7 +31,7 @@
 
 	<name>Documentum xCP Plugin</name>
 	<description>Eases the generation and deployment of Documentum xCP applications.</description>
-	<url>https://github.com/viltgroup/jenkins-xcp-ci-plugin/wiki</url>
+	<url>https://wiki.jenkins-ci.org/display/JENKINS/xCP+CI+Plugin</url>
 	<licenses>
 		<license>
 			<name>Apache 2.0</name>
@@ -57,10 +57,9 @@
 	</organization>
 
 	<scm>
-		<connection>scm:git:git://github.com:viltgroup/jenkins-xcp-ci-plugin.git</connection>
-		<developerConnection>scm:git:git@github.com:viltgroup/jenkins-xcp-ci-plugin.git</developerConnection>
-		<url>https://github.com/viltgroup/jenkins-xcp-ci-plugin</url>
-		<tag>HEAD</tag>
+		<connection>scm:git:git://github.com:jenkinsci/xcp-ci-plugin.git</connection>
+		<developerConnection>scm:git:git://github.com:jenkinsci/xcp-ci-plugin.git</developerConnection>
+		<url>https://github.com/jenkinsci/jenkins-xcp-ci-plugin</url>
 	</scm>
 
 	<issueManagement>
