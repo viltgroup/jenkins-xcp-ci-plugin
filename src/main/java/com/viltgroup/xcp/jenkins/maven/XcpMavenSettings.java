@@ -16,8 +16,7 @@
  */
 package com.viltgroup.xcp.jenkins.maven;
 
-import hudson.FilePath;
-
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
@@ -29,6 +28,8 @@ import org.apache.commons.jelly.Script;
 import org.apache.commons.jelly.XMLOutput;
 
 import com.viltgroup.xcp.jenkins.utils.OSPathHacks;
+
+import hudson.FilePath;
 
 /**
  * Utility class that handles the generation of maven settings.xml for a given xCP Designer project. 
@@ -60,7 +61,21 @@ public class XcpMavenSettings {
 	        JellyContext context = new JellyContext();
 	        context.setVariable("workspacePath", OSPathHacks.processFilePath(workspacePath));
 	        context.setVariable("xcpDesignerPath", xcpDesignerPath);
-	        context.setVariable("xcpDesignerMavenPath", String.format("%s/maven", OSPathHacks.processFilePath(xcpDesignerPath)));
+
+	        String xcpDesignerPathParsed = OSPathHacks.processFilePath(xcpDesignerPath);
+        	// #1 - Starting from xCP Designer 2.2, internal maven repository is inside ./maven/designer instead of just ./maven
+        	String mavenRepoPath22 = String.format("%s/maven/designer", xcpDesignerPathParsed);
+	        if (new File(mavenRepoPath22).exists()) {
+		        context.setVariable("xcpDesignerMavenPath", mavenRepoPath22);
+	        } else {
+	        	// fallback to xCP Designer 2.1 location
+		        String mavenRepoPath = String.format("%s/maven", xcpDesignerPathParsed);
+		        if (new File(mavenRepoPath).exists()) {
+			        context.setVariable("xcpDesignerMavenPath", mavenRepoPath);
+		        } else {
+			    	throw new RuntimeException(String.format("Could not find xCP Designer internal maven repository. Path %s (for 2.1) and %s (for 2.2) do not exist.", mavenRepoPath, mavenRepoPath22));
+		        }
+	        }
 	        context.setVariable("localRepositoryPath", OSPathHacks.processFilePath(localRepositoryPath));
 	        script.run( context, output );
 	        output.flush();

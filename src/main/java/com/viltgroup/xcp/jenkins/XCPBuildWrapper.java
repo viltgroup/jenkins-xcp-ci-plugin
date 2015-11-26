@@ -60,7 +60,7 @@ public class XCPBuildWrapper extends BuildWrapper {
 	}
 	
 	@Override
-	public Environment setUp(final AbstractBuild build, Launcher launcher, BuildListener listener) throws IOException, InterruptedException {
+	public Environment setUp(@SuppressWarnings("rawtypes") final AbstractBuild build, Launcher launcher, BuildListener listener) throws IOException, InterruptedException {
 		
 		// losd xcp environment
 		XcpEnvironmentInstance xcpEnv = XCPEnvironmentsConfig.get().getById(xcpEnvId);
