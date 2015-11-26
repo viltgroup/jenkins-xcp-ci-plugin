@@ -23,7 +23,7 @@ import hudson.model.BuildListener;
 import hudson.model.AbstractBuild;
 import hudson.tasks.BuildStepMonitor;
 import hudson.tasks.Builder;
-import hudson.tasks.Publisher;
+import hudson.tasks.Notifier;
 import hudson.util.Secret;
 
 import org.kohsuke.stapler.DataBoundConstructor;
@@ -52,7 +52,7 @@ s * <p>
  * method will be invoked. 
  * 
  */
-public class XMSPublisher extends Publisher implements IXMSPublishConfig {
+public class XMSPublisher extends Notifier implements IXMSPublishConfig {
 
 	/**
 	 * Hold an instance of the Descriptor implementation of this publisher.
@@ -177,7 +177,7 @@ public class XMSPublisher extends Publisher implements IXMSPublishConfig {
 	}
 
 	@Override
-    public boolean perform(AbstractBuild build, Launcher launcher, BuildListener listener) {
+    public boolean perform(@SuppressWarnings("rawtypes") AbstractBuild build, Launcher launcher, BuildListener listener) {
         // This is where you 'build' the project.
 		XMSExecutionWrapper xmsExecution = new XMSExecutionWrapper();
 		
