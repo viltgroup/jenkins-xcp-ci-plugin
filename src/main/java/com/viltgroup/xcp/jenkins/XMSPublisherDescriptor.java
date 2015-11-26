@@ -48,7 +48,7 @@ public final class XMSPublisherDescriptor extends BuildStepDescriptor<Publisher>
 		super(XMSPublisher.class);
     }
 
-    public boolean isApplicable(Class<? extends AbstractProject> aClass) {
+    public boolean isApplicable(@SuppressWarnings("rawtypes") Class<? extends AbstractProject> aClass) {
         // Indicates that this builder can be used with all kind of project types 
         return true;
     }
