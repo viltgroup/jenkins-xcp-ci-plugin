@@ -16,23 +16,19 @@
  */
 package com.viltgroup.xcp.jenkins;
 
-import hudson.Extension;
-import hudson.util.FormValidation;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.servlet.ServletException;
-
-import jenkins.model.GlobalConfiguration;
-import net.sf.json.JSONObject;
 
 import org.kohsuke.stapler.QueryParameter;
 import org.kohsuke.stapler.StaplerRequest;
 
 import com.viltgroup.xcp.jenkins.model.XcpEnvironmentInstance;
 import com.viltgroup.xcp.jenkins.utils.FormValidations;
+
+import hudson.Extension;
+import hudson.util.FormValidation;
+import jenkins.model.GlobalConfiguration;
+import net.sf.json.JSONObject;
 
 /**
  * Global configurations for the Documentum xCP Plugin
@@ -96,31 +92,31 @@ public class XCPEnvironmentsConfig extends GlobalConfiguration {
      * @return Indicates the outcome of the validation. This is sent to the
      *         browser.
      */
-    public FormValidation doCheckName(@QueryParameter String name) throws IOException, ServletException {
+    public FormValidation doCheckName(@QueryParameter String name) {
     	return FormValidations.validateRequired(name);
     }
     
     /**
      * Performs on-the-fly validation of the form field 'xcpDesignerPath'.
      * 
-     * @param path
+     * @param xcpDesignerPath
      *            This parameter receives the value that the user has typed.
      * @return Indicates the outcome of the validation. This is sent to the
      *         browser.
      */
-    public FormValidation doCheckXcpDesignerPath(@QueryParameter String xcpDesignerPath) throws IOException, ServletException {
+    public FormValidation doCheckXcpDesignerPath(@QueryParameter String xcpDesignerPath) {
     	return FormValidations.validateDirectory(xcpDesignerPath);
     }
     
     /**
      * Performs on-the-fly validation of the form field 'xmsToolsPath'.
      * 
-     * @param path
+     * @param xmsToolsPath
      *            This parameter receives the value that the user has typed.
      * @return Indicates the outcome of the validation. This is sent to the
      *         browser.
      */
-    public FormValidation doCheckXmsToolsPath(@QueryParameter String xmsToolsPath) throws IOException, ServletException {
+    public FormValidation doCheckXmsToolsPath(@QueryParameter String xmsToolsPath) {
     	return FormValidations.validateDirectory(xmsToolsPath);
     }
 }

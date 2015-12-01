@@ -41,9 +41,10 @@ public class XMSExecutionWrapper {
 	 * Calls XMS Tools to execute a deploy
 	 * 
 	 * @param xmsWorkPath - Path to execution directory (should start empty).
-	 * @param publishConfig
-	 * @param consoleOutput
+	 * @param publishConfig - XMS deployment configuration
+	 * @param consoleOutput - Print stream where to write the console output
 	 * @return
+	 *	true if deployment succeeds
 	 */
 	public boolean run(String xmsWorkPath, IXMSPublishConfig publishConfig, PrintStream consoleOutput) {
 		String javaHome = System.getProperty("java.home");
