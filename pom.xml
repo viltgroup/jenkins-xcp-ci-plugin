@@ -25,7 +25,7 @@
 
 	<groupId>com.viltgroup.xcp.jenkins</groupId>
 	<artifactId>xcp-ci</artifactId>
-	<version>0.5.2-SNAPSHOT</version>
+	<version>0.5.2</version>
 	<packaging>hpi</packaging>
 
 	<name>Documentum xCP Plugin</name>
@@ -59,7 +59,7 @@
 		<connection>scm:git:https://github.com/jenkinsci/xcp-ci-plugin.git</connection>
 		<developerConnection>scm:git:https://github.com/jenkinsci/xcp-ci-plugin.git</developerConnection>
 		<url>https://github.com/jenkinsci/jenkins-xcp-ci-plugin</url>
-	  <tag>HEAD</tag>
+	  <tag>xcp-ci-0.5.2</tag>
   </scm>
 
 	<issueManagement>
