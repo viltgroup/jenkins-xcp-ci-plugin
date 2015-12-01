@@ -16,18 +16,7 @@
  */
 package com.viltgroup.xcp.jenkins;
 
-import hudson.Extension;
-import hudson.FilePath;
-import hudson.Launcher;
-import hudson.model.BuildListener;
-import hudson.model.AbstractBuild;
-import hudson.tasks.BuildStepMonitor;
-import hudson.tasks.Builder;
-import hudson.tasks.Notifier;
-import hudson.util.Secret;
-
 import org.kohsuke.stapler.DataBoundConstructor;
-import org.kohsuke.stapler.StaplerRequest;
 
 import com.viltgroup.xcp.jenkins.model.DataPolicy;
 import com.viltgroup.xcp.jenkins.model.DeployEnvType;
@@ -36,22 +25,15 @@ import com.viltgroup.xcp.jenkins.model.XcpEnvironmentInstance;
 import com.viltgroup.xcp.xms.xmsdeployer.IXMSPublishConfig;
 import com.viltgroup.xcp.xms.xmsdeployer.XMSExecutionWrapper;
 
-/**
- * Sample {@link Builder}.
- *
-s * <p>
- * When the user configures the project and enables this builder,
- * {@link DescriptorImpl#newInstance(StaplerRequest)} is invoked
- * and a new {@link XMSPublisher} is created. The created
- * instance is persisted to the project configuration XML by using
- * XStream, so this allows you to use instance fields (like {@link #name})
- * to remember the configuration.
- *
- * <p>
- * When a build is performed, the {@link #perform(AbstractBuild, Launcher, BuildListener)}
- * method will be invoked. 
- * 
- */
+import hudson.Extension;
+import hudson.FilePath;
+import hudson.Launcher;
+import hudson.model.AbstractBuild;
+import hudson.model.BuildListener;
+import hudson.tasks.BuildStepMonitor;
+import hudson.tasks.Notifier;
+import hudson.util.Secret;
+
 public class XMSPublisher extends Notifier implements IXMSPublishConfig {
 
 	/**

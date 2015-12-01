@@ -16,10 +16,13 @@
  */
 package com.viltgroup.xcp.jenkins;
 
-import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.ServletException;
+import org.kohsuke.stapler.QueryParameter;
+import org.kohsuke.stapler.StaplerRequest;
+
+import com.viltgroup.xcp.jenkins.model.XcpEnvironmentInstance;
+import com.viltgroup.xcp.jenkins.utils.FormValidations;
 
 import hudson.maven.AbstractMavenProject;
 import hudson.model.AbstractProject;
@@ -28,12 +31,6 @@ import hudson.tasks.BuildWrapper;
 import hudson.tasks.BuildWrapperDescriptor;
 import hudson.util.FormValidation;
 import net.sf.json.JSONObject;
-
-import org.kohsuke.stapler.QueryParameter;
-import org.kohsuke.stapler.StaplerRequest;
-
-import com.viltgroup.xcp.jenkins.model.XcpEnvironmentInstance;
-import com.viltgroup.xcp.jenkins.utils.FormValidations;
 
 /**
  * Descriptor for {@link XCPBuildWrapper}. Used as a singleton.
@@ -79,7 +76,7 @@ public final class XCPBuildWrapperDescriptor extends BuildWrapperDescriptor  {
      * @return Indicates the outcome of the validation. This is sent to the
      *         browser.
      */
-    public FormValidation doCheckBuildPath(@QueryParameter String buildPath) throws IOException, ServletException {
+    public FormValidation doCheckBuildPath(@QueryParameter String buildPath) {
     	return FormValidations.validateDirectory(buildPath, true);
     }
 	
