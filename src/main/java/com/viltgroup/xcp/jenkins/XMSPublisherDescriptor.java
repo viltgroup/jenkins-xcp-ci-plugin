@@ -16,23 +16,19 @@
  */
 package com.viltgroup.xcp.jenkins;
 
-import hudson.model.AbstractProject;
-import hudson.tasks.BuildStepDescriptor;
-import hudson.tasks.Publisher;
-import hudson.util.FormValidation;
-
-import java.io.IOException;
 import java.util.List;
-
-import javax.servlet.ServletException;
-
-import net.sf.json.JSONObject;
 
 import org.kohsuke.stapler.QueryParameter;
 import org.kohsuke.stapler.StaplerRequest;
 
 import com.viltgroup.xcp.jenkins.model.XcpEnvironmentInstance;
 import com.viltgroup.xcp.jenkins.utils.FormValidations;
+
+import hudson.model.AbstractProject;
+import hudson.tasks.BuildStepDescriptor;
+import hudson.tasks.Publisher;
+import hudson.util.FormValidation;
+import net.sf.json.JSONObject;
 
 /**
  * Descriptor for {@link XMSPublisher}. Used as a singleton.
@@ -78,7 +74,7 @@ public final class XMSPublisherDescriptor extends BuildStepDescriptor<Publisher>
      * @return Indicates the outcome of the validation. This is sent to the
      *         browser.
      */
-    public FormValidation doCheckXcpAppPackagePath(@QueryParameter String xcpAppPackagePath) throws IOException, ServletException {
+    public FormValidation doCheckXcpAppPackagePath(@QueryParameter String xcpAppPackagePath) {
         return FormValidations.validateFile(xcpAppPackagePath);
     }
 
@@ -90,7 +86,7 @@ public final class XMSPublisherDescriptor extends BuildStepDescriptor<Publisher>
      * @return Indicates the outcome of the validation. This is sent to the
      *         browser.
      */
-    public FormValidation doCheckXcpAppConfigPath(@QueryParameter String xcpAppConfigPath) throws IOException, ServletException {
+    public FormValidation doCheckXcpAppConfigPath(@QueryParameter String xcpAppConfigPath) {
         return FormValidations.validateFile(xcpAppConfigPath);
     }
     
@@ -102,7 +98,7 @@ public final class XMSPublisherDescriptor extends BuildStepDescriptor<Publisher>
      * @return Indicates the outcome of the validation. This is sent to the
      *         browser.
      */
-    public FormValidation doCheckEnvironment(@QueryParameter String environment) throws IOException, ServletException {
+    public FormValidation doCheckEnvironment(@QueryParameter String environment) {
         return FormValidations.validateRequired(environment);
     }
     
@@ -114,7 +110,7 @@ public final class XMSPublisherDescriptor extends BuildStepDescriptor<Publisher>
      * @return Indicates the outcome of the validation. This is sent to the
      *         browser.
      */
-    public FormValidation doCheckXmsUsername(@QueryParameter String xmsUsername) throws IOException, ServletException {
+    public FormValidation doCheckXmsUsername(@QueryParameter String xmsUsername) {
         return FormValidations.validateRequired(xmsUsername);
     }
 
@@ -126,7 +122,7 @@ public final class XMSPublisherDescriptor extends BuildStepDescriptor<Publisher>
      * @return Indicates the outcome of the validation. This is sent to the
      *         browser.
      */
-    public FormValidation doChecXxmsPassword(@QueryParameter String xmsPassword) throws IOException, ServletException {
+    public FormValidation doChecXxmsPassword(@QueryParameter String xmsPassword) {
         return FormValidations.validateRequired(xmsPassword);
     }
 
@@ -138,7 +134,7 @@ public final class XMSPublisherDescriptor extends BuildStepDescriptor<Publisher>
      * @return Indicates the outcome of the validation. This is sent to the
      *         browser.
      */
-    public FormValidation doCheckXmsServerHost(@QueryParameter String xmsServerHost) throws IOException, ServletException {
+    public FormValidation doCheckXmsServerHost(@QueryParameter String xmsServerHost) {
         return FormValidations.validateRequired(xmsServerHost);
     }
 
@@ -150,7 +146,7 @@ public final class XMSPublisherDescriptor extends BuildStepDescriptor<Publisher>
      * @return Indicates the outcome of the validation. This is sent to the
      *         browser.
      */
-    public FormValidation doCheckXmsServerPort(@QueryParameter String xmsServerPort) throws IOException, ServletException {
+    public FormValidation doCheckXmsServerPort(@QueryParameter String xmsServerPort) {
     	try {
     		int portNumber = Integer.parseInt(xmsServerPort);
     		if (portNumber <= 0 || portNumber > 0xffff) {
@@ -170,7 +166,7 @@ public final class XMSPublisherDescriptor extends BuildStepDescriptor<Publisher>
      * @return Indicates the outcome of the validation. This is sent to the
      *         browser.
      */
-    public FormValidation doCheckWorkPath(@QueryParameter String workPath) throws IOException, ServletException {
+    public FormValidation doCheckWorkPath(@QueryParameter String workPath) {
         return FormValidations.validateDirectory(workPath, true);
     }
 }
