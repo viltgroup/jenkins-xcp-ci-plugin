@@ -79,12 +79,30 @@ public class XMSExecutionWrapper {
 			
 			// main class
 			commandAndArguments.add("com.documentum.xms.cli.XmsConsole");
+
+			// debug command line execution
+			{
+				StringBuffer commandLineDebugBuffer = new StringBuffer();
+				for (String aux : commandAndArguments) {
+					if (commandLineDebugBuffer.length() > 0) {
+						commandLineDebugBuffer.append(" ");
+					}
+					if (aux.startsWith("-Dxms.password=")) {
+						// don't include password in the log
+						commandLineDebugBuffer.append("-Dxms.password=****");
+					} else {
+						commandLineDebugBuffer.append(aux);	
+					}
+				}
+				consoleOutput.println(String.format("Executing xMS:\n> %s", commandLineDebugBuffer.toString()));
+			}
 			
 			ProcessBuilder processBuilder = new ProcessBuilder(commandAndArguments);
 			// run directory needs to be inside bin/ 
 			processBuilder.directory(new File(xmsWorkPath, "bin"));
 			Process process = processBuilder.start();
 			
+			boolean deploySucceeded = false;
 			Integer result = null;
 			String outputLine = null;
 
@@ -94,6 +112,7 @@ public class XMSExecutionWrapper {
 				do {
 					while ((outputLine = stdout.readLine ()) != null) {
 						consoleOutput.println(outputLine);
+						deploySucceeded = deploySucceeded || outputLine.endsWith("Deploying application was successful");
 					}
 					while ((outputLine = stderr.readLine ()) != null) {
 						consoleOutput.format("***%s",outputLine);
@@ -110,7 +129,7 @@ public class XMSExecutionWrapper {
 				stderr.close();
 			}
 			
-			return (result != null && result == 0 && "SUCCESS".equals(outputLine));
+			return (result != null && result == 0 && deploySucceeded);
 
 		} catch (IOException ioex) {
 			consoleOutput.println("*** FAILED ***");
@@ -216,6 +235,9 @@ public class XMSExecutionWrapper {
 			writer.format(" --data-policy %s", publishConfig.getDataPolicy());
 			writer.format(" --xploreindexing %s", publishConfig.isXploreIndexing());
 			writer.format(" --validateonly %s", publishConfig.isValidateOnly());
+			if (publishConfig.getBatchSize() != null) {
+				writer.format(" --batch-size %s", publishConfig.getBatchSize());				
+			}
 		} finally {
 			if (writer != null) writer.close();
 		}
