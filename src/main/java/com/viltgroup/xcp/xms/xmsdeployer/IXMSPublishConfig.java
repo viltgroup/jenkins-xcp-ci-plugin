@@ -34,6 +34,8 @@ public interface IXMSPublishConfig {
 	public boolean isXploreIndexing();
 	public boolean isValidateOnly();
 
+	public Integer getBatchSize();
+	
 	public String getXmsUsername();
 	public String getXmsPassword();
 	public String getXmsServerHost();

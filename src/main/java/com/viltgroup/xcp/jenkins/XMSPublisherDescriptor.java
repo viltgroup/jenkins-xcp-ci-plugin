@@ -103,6 +103,28 @@ public final class XMSPublisherDescriptor extends BuildStepDescriptor<Publisher>
     }
     
     /**
+     * Performs on-the-fly validation of the form field 'batchSize'.
+     * 
+     * @param batchSize
+     *            This parameter receives the value that the user has typed.
+     * @return Indicates the outcome of the validation. This is sent to the
+     *         browser.
+     */
+    public FormValidation doCheckBatchSize(@QueryParameter String batchSize) {
+    	if (batchSize != null && !batchSize.isEmpty()) {
+	    	try {
+	    		int batchSizeNum = Integer.parseInt(batchSize);
+	    		if (batchSizeNum <= 0) {
+	        		return FormValidation.warning("Batch Size value is invalid.");    			
+	    		}
+	    	} catch(NumberFormatException ex) {
+	    		return FormValidation.warning("Batch Size value is invalid.");
+	    	}
+    	}
+        return FormValidation.ok();
+    }
+    
+    /**
      * Performs on-the-fly validation of the form field 'xmsUsername'.
      * 
      * @param xmsUsername

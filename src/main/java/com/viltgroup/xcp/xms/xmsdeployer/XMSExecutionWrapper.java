@@ -216,6 +216,9 @@ public class XMSExecutionWrapper {
 			writer.format(" --data-policy %s", publishConfig.getDataPolicy());
 			writer.format(" --xploreindexing %s", publishConfig.isXploreIndexing());
 			writer.format(" --validateonly %s", publishConfig.isValidateOnly());
+			if (publishConfig.getBatchSize() != null) {
+				writer.format(" --batch-size %s", publishConfig.getBatchSize());				
+			}
 		} finally {
 			if (writer != null) writer.close();
 		}
