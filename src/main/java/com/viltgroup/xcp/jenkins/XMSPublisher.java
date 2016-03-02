@@ -41,7 +41,7 @@ public class XMSPublisher extends Notifier implements IXMSPublishConfig {
 	 */
 	@Extension
 	public static final XMSPublisherDescriptor DESCRIPTOR = new XMSPublisherDescriptor();
-	
+
 	// Configs
 	private final String xcpEnvId;
 	private final String xcpAppPackagePath;
@@ -55,6 +55,8 @@ public class XMSPublisher extends Notifier implements IXMSPublishConfig {
 	private final boolean xploreIndexing;
 	private final boolean validateOnly;
 
+	private Integer batchSize;
+
 	private final String xmsUsername;
 	private final Secret xmsPassword;
 	private final String xmsServerHost;
@@ -65,14 +67,14 @@ public class XMSPublisher extends Notifier implements IXMSPublishConfig {
 	private final String workPath;
 	private final String javaOpts;
 
-    // Fields in config.jelly must match the parameter names in the "DataBoundConstructor"
-	@DataBoundConstructor public XMSPublisher(String xcpEnvId, String xcpAppPackagePath, String xcpAppConfigPath,
-			String environment, DataPolicy dataPolicy,
-			DeployMethod deployMethod, DeployEnvType deployEnvType,
-			boolean xploreIndexing, boolean validateOnly, String xmsUsername,
-			Secret xmsPassword, String xmsServerHost, String xmsServerPort,
-			String xmsServerSchema, String xmsServerContextPath,
-			String workPath, String javaOpts) {
+	// Fields in config.jelly must match the parameter names in the
+	// "DataBoundConstructor"
+	@DataBoundConstructor
+	public XMSPublisher(String xcpEnvId, String xcpAppPackagePath, String xcpAppConfigPath, String environment,
+			DataPolicy dataPolicy, DeployMethod deployMethod, DeployEnvType deployEnvType, boolean xploreIndexing,
+			boolean validateOnly, Integer batchSize, String xmsUsername, Secret xmsPassword, String xmsServerHost,
+			String xmsServerPort, String xmsServerSchema, String xmsServerContextPath, String workPath,
+			String javaOpts) {
 		this.xcpEnvId = xcpEnvId;
 		this.xcpAppPackagePath = xcpAppPackagePath;
 		this.xcpAppConfigPath = xcpAppConfigPath;
@@ -82,6 +84,7 @@ public class XMSPublisher extends Notifier implements IXMSPublishConfig {
 		this.deployEnvType = deployEnvType;
 		this.xploreIndexing = xploreIndexing;
 		this.validateOnly = validateOnly;
+		this.batchSize = batchSize;
 		this.xmsUsername = xmsUsername;
 		this.xmsPassword = xmsPassword;
 		this.xmsServerHost = xmsServerHost;
@@ -95,6 +98,7 @@ public class XMSPublisher extends Notifier implements IXMSPublishConfig {
 	public String getXcpAppPackagePath() {
 		return xcpAppPackagePath;
 	}
+
 	public String getXcpAppConfigPath() {
 		return xcpAppConfigPath;
 	}
@@ -106,9 +110,11 @@ public class XMSPublisher extends Notifier implements IXMSPublishConfig {
 	public DeployMethod getDeployMethod() {
 		return deployMethod;
 	}
+
 	public DataPolicy getDataPolicy() {
 		return dataPolicy;
 	}
+
 	public DeployEnvType getDeployEnvType() {
 		return deployEnvType;
 	}
@@ -116,71 +122,84 @@ public class XMSPublisher extends Notifier implements IXMSPublishConfig {
 	public boolean isXploreIndexing() {
 		return xploreIndexing;
 	}
+
 	public boolean isValidateOnly() {
 		return validateOnly;
+	}
+	
+	public Integer getBatchSize() {
+		return batchSize;
 	}
 
 	public String getXmsUsername() {
 		return xmsUsername;
 	}
+
 	public String getXmsPassword() {
 		return Secret.toString(xmsPassword);
 	}
-    public String getXmsServerHost() {
+
+	public String getXmsServerHost() {
 		return xmsServerHost;
 	}
+
 	public String getXmsServerPort() {
 		return xmsServerPort;
 	}
+
 	public String getXmsServerSchema() {
 		return xmsServerSchema;
 	}
+
 	public String getXmsServerContextPath() {
 		return xmsServerContextPath;
 	}
 
 	public String getXmsToolsPath() {
 		String xmsToolsPath = "";
-        for(XcpEnvironmentInstance xcpEnvironmentInstance : DESCRIPTOR.getXcpEnvironmentInstances()) {
-            if(xcpEnvId.equals(xcpEnvironmentInstance.xcpEnvId)) {
-            	xmsToolsPath = xcpEnvironmentInstance.xmsToolsPath;
-            }
-        }
+		for (XcpEnvironmentInstance xcpEnvironmentInstance : DESCRIPTOR.getXcpEnvironmentInstances()) {
+			if (xcpEnvId.equals(xcpEnvironmentInstance.xcpEnvId)) {
+				xmsToolsPath = xcpEnvironmentInstance.xmsToolsPath;
+			}
+		}
 		return xmsToolsPath;
 	}
+
 	public String getXcpEnvId() {
 		return xcpEnvId;
 	}
+
 	public String getWorkPath() {
 		return workPath;
 	}
+
 	public String getJavaOpts() {
 		return javaOpts;
 	}
 
 	@Override
-    public boolean perform(@SuppressWarnings("rawtypes") AbstractBuild build, Launcher launcher, BuildListener listener) {
-        // This is where you 'build' the project.
+	public boolean perform(@SuppressWarnings("rawtypes") AbstractBuild build, Launcher launcher,
+			BuildListener listener) {
+		// This is where you 'build' the project.
 		XMSExecutionWrapper xmsExecution = new XMSExecutionWrapper();
-		
+
 		// Construct xmsWorkPath based on current workspace.
 		FilePath workspacePath = build.getWorkspace();
 		FilePath xmsWorkPath = workspacePath.child(this.getWorkPath());
-		
-		return xmsExecution.run(xmsWorkPath.getRemote(), this, listener.getLogger());
-    }
 
-    // Overridden for better type safety.
-    // If your plugin doesn't really define any property on Descriptor,
-    // you don't have to do this.
-    @Override
-    public XMSPublisherDescriptor getDescriptor() {
-        return DESCRIPTOR;
-    }
+		return xmsExecution.run(xmsWorkPath.getRemote(), this, listener.getLogger());
+	}
+
+	// Overridden for better type safety.
+	// If your plugin doesn't really define any property on Descriptor,
+	// you don't have to do this.
+	@Override
+	public XMSPublisherDescriptor getDescriptor() {
+		return DESCRIPTOR;
+	}
 
 	@Override
 	public BuildStepMonitor getRequiredMonitorService() {
 		return BuildStepMonitor.NONE;
 	}
 }
-

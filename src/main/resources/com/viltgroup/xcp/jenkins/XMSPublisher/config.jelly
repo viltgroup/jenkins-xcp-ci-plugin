@@ -68,6 +68,10 @@
 			<f:entry title="${%xPlore Indexing?}" field="xploreIndexing">
 				<f:checkbox />
 			</f:entry>
+
+			<f:entry title="${%Batch Size}" field="batchSize">
+				<f:textbox />
+			</f:entry>
 		</f:section>
 
 		<f:section title="${%Connection Configuration}">
@@ -84,10 +88,10 @@
 				<f:textbox />
 			</f:entry>
 			<f:entry title="${%Schema}" field="xmsServerSchema">
-			    <select name="xmsServerSchema">
-			        <option value="http">HTTP</option>
-			        <option value="https">HTTPS</option>
-			    </select>
+				<select name="xmsServerSchema">
+			        <option value="http" selected="${descriptor.xmsServerSchema=='http'?'true':null}">HTTP</option>
+			        <option value="https" selected="${descriptor.xmsServerSchema=='http'?'true':null}">HTTPS</option>
+				</select>
 			</f:entry>
 	 		<f:entry title="${%Context Path}" field="xmsServerContextPath">
 				<f:textbox />

@@ -1,0 +1,4 @@
+<div>
+	<p>Defines the degree of parallelism when validating the application before deployment.</p>
+	<p><b>Note:</b>This parameter is only supported on <b>XMS version 1.2</b> or later</p>
+</div>
