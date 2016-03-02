@@ -25,7 +25,7 @@
 
 	<groupId>com.viltgroup.xcp.jenkins</groupId>
 	<artifactId>xcp-ci</artifactId>
-	<version>0.4.1-SNAPSHOT</version>
+	<version>0.5.4-SNAPSHOT</version>
 	<packaging>hpi</packaging>
 
 	<name>Documentum xCP Plugin</name>
