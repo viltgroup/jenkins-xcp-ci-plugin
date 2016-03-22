@@ -89,8 +89,8 @@
 			</f:entry>
 			<f:entry title="${%Schema}" field="xmsServerSchema">
 				<select name="xmsServerSchema">
-			        <option value="http" selected="${descriptor.xmsServerSchema=='http'?'true':null}">HTTP</option>
-			        <option value="https" selected="${descriptor.xmsServerSchema=='http'?'true':null}">HTTPS</option>
+			        <option value="http" selected="${instance.xmsServerSchema=='http'?'true':null}">HTTP</option>
+			        <option value="https" selected="${instance.xmsServerSchema=='https'?'true':null}">HTTPS</option>
 				</select>
 			</f:entry>
 	 		<f:entry title="${%Context Path}" field="xmsServerContextPath">

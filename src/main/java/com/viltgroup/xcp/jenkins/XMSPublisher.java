@@ -30,6 +30,7 @@ import hudson.FilePath;
 import hudson.Launcher;
 import hudson.model.AbstractBuild;
 import hudson.model.BuildListener;
+import hudson.model.Result;
 import hudson.tasks.BuildStepMonitor;
 import hudson.tasks.Notifier;
 import hudson.util.Secret;
@@ -180,14 +181,18 @@ public class XMSPublisher extends Notifier implements IXMSPublishConfig {
 	@Override
 	public boolean perform(@SuppressWarnings("rawtypes") AbstractBuild build, Launcher launcher,
 			BuildListener listener) {
-		// This is where you 'build' the project.
-		XMSExecutionWrapper xmsExecution = new XMSExecutionWrapper();
-
-		// Construct xmsWorkPath based on current workspace.
-		FilePath workspacePath = build.getWorkspace();
-		FilePath xmsWorkPath = workspacePath.child(this.getWorkPath());
-
-		return xmsExecution.run(xmsWorkPath.getRemote(), this, listener.getLogger());
+		if (build.getResult() == Result.SUCCESS) {
+			// This is where you 'build' the project.
+			XMSExecutionWrapper xmsExecution = new XMSExecutionWrapper();
+	
+			// Construct xmsWorkPath based on current workspace.
+			FilePath workspacePath = build.getWorkspace();
+			FilePath xmsWorkPath = workspacePath.child(this.getWorkPath());
+	
+			return xmsExecution.run(xmsWorkPath.getRemote(), this, listener.getLogger());
+		} else {
+			return false;
+		}
 	}
 
 	// Overridden for better type safety.
